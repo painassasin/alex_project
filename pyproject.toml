@@ -6,9 +6,9 @@ authors = ["painassasin <painassasin@icloud.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pydantic = "^1.10.2"
 Faker = "^15.3.3"
 requests-tor = "^1.3"
+pydantic = {version = "^1.10.2", extras = ["dotenv"]}
 
 [tool.poetry.dev-dependencies]
 
