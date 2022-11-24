@@ -2,6 +2,7 @@ from pathlib import Path
 
 from pydantic import BaseSettings, HttpUrl
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 

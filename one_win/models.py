@@ -1,12 +1,13 @@
 from datetime import datetime
 from textwrap import dedent
-from typing import TypeVar, Type
+from typing import Type, TypeVar
 
 from faker import Faker
 from pydantic import BaseModel, Field, validator
 
 from core import settings
 from core.response import TgResponse
+
 
 T1 = TypeVar('T1', bound='Credentials')
 T2 = TypeVar('T2', bound='RegisterPayload')

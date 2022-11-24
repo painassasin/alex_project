@@ -1,5 +1,6 @@
-from pydantic import BaseModel
 from abc import ABCMeta, abstractmethod
+
+from pydantic import BaseModel
 
 
 class TgResponse(BaseModel, metaclass=ABCMeta):

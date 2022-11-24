@@ -5,7 +5,8 @@ from requests_tor import RequestsTor
 
 from core import settings
 from core.exceptions import BadRequest, ParseError
-from one_win.models import Credentials, Request, RegisterPayload, ResponseData
+from one_win.models import Credentials, RegisterPayload, Request, ResponseData
+
 
 logger = logging.getLogger('alex_project.one_win')
 
