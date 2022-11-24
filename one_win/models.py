@@ -1,7 +1,10 @@
+from datetime import datetime
 from typing import TypeVar, Type
 
 from faker import Faker
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
+
+from core import settings
 
 T1 = TypeVar('T1', bound='Credentials')
 T2 = TypeVar('T2', bound='RegisterPayload')
@@ -45,6 +48,7 @@ class RegisterPayload(BaseModel):
             email=creds.email,
             password=creds.password,
             repeat_password=creds.password,
+            partner_key=settings.ONE_WIN.PARTNER_KEY,
             **kwargs
         )
 
@@ -55,3 +59,19 @@ class RegisterPayload(BaseModel):
 class Request(BaseModel):
     name: str = 'USER:auth-register'
     payload: RegisterPayload
+
+
+class ResponseData(BaseModel):
+    id: int
+    email: str
+    phone: str
+    time_registration: datetime
+    token: str
+    user_id: int
+    partner_key: str
+
+    @validator('time_registration', pre=True)
+    def convert_str_to_datetime(cls, value: str) -> datetime:
+        if value.endswith('Z'):
+            return datetime.fromisoformat(value[:-1])
+        return datetime.fromisoformat(value)
