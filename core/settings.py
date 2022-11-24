@@ -21,9 +21,17 @@ class OneWinSettings(AppSettings):
         env_prefix = 'ONE_WIN_'
 
 
-class Settings(AppSettings):
+class TelegramSettings(AppSettings):
     BOT_TOKEN: str
+    ADMIN_IDS: list[int] = []
+
+    class Config:
+        env_prefix = 'TG_'
+
+
+class Settings(AppSettings):
     DEBUG: bool = False
+    TG: TelegramSettings = TelegramSettings()
     ONE_WIN: OneWinSettings = OneWinSettings()
 
 
