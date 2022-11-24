@@ -1,16 +1,18 @@
 from datetime import datetime
+from textwrap import dedent
 from typing import TypeVar, Type
 
 from faker import Faker
 from pydantic import BaseModel, Field, validator
 
 from core import settings
+from core.response import TgResponse
 
 T1 = TypeVar('T1', bound='Credentials')
 T2 = TypeVar('T2', bound='RegisterPayload')
 
 
-class Credentials(BaseModel):
+class Credentials(TgResponse):
     phone_number: str
     email: str
     password: str
@@ -22,6 +24,13 @@ class Credentials(BaseModel):
             email=faker.email(),
             password=faker.password(special_chars=False, length=12),
         )
+
+    def as_text(self) -> str:
+        return dedent(f"""\
+        email: {self.email}
+        phone: {self.phone_number}
+        password: {self.password}\
+        """)
 
 
 class RegisterPayload(BaseModel):
