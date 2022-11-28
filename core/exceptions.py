@@ -9,9 +9,5 @@ class BaseAppException(Exception):
         return self.message
 
 
-class BadRequest(BaseAppException):
-    pass
-
-
 class ParseError(BaseAppException):
     pass
