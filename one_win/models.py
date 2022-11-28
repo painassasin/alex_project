@@ -1,3 +1,4 @@
+import random
 from datetime import datetime
 from textwrap import dedent
 from typing import Type, TypeVar
@@ -22,7 +23,7 @@ class Credentials(TgResponse):
     def get_faker_credentials(cls: Type[T1], faker: Faker) -> T1:
         return cls(
             phone_number='+7' + ''.join([i for i in faker.phone_number() if i.isdigit()])[-10:],
-            email=faker.email(),
+            email=faker.email(domain=random.choice(settings.ONE_WIN.EMAIL_DOMAINS)),
             password=faker.password(special_chars=False, length=12),
         )
 

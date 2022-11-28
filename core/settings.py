@@ -17,6 +17,7 @@ class AppSettings(BaseSettings):
 class OneWinSettings(AppSettings):
     URL: HttpUrl = 'https://1wyxza.top/microservice/ask'
     PARTNER_KEY: str
+    EMAIL_DOMAINS: list[str] = ['example.com']
 
     class Config:
         env_prefix = 'ONE_WIN_'
