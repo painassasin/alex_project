@@ -23,7 +23,7 @@ logging.getLogger('urllib3.connectionpool').setLevel(logging.INFO)
 logger = logging.getLogger('alex_project.main')
 faker = Faker('ru_RU')
 one_win_controller = OneWinController(faker)
-rt = RequestsTor(tor_ports=(9050,), tor_cport=9051, autochange_id=1)
+rt = RequestsTor(tor_ports=(9050,), tor_cport=9051, autochange_id=1, verbose=settings.DEBUG)
 bot = telebot.TeleBot(settings.TG.BOT_TOKEN)
 
 

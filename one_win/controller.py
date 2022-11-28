@@ -45,6 +45,6 @@ class OneWinController:
             credentials = self.get_new_credentials()
         logger.debug('Try to register user with credentials: %s', credentials)
 
-        payload = self._get_request_data(credentials).dict(by_alias=True)
-        logger.debug('Payload: %s', payload)
-        return self._process_response(response=rt.post(settings.ONE_WIN.URL, json=payload))
+        request_data = self._get_request_data(credentials).dict(by_alias=True)
+        logger.debug('Request data: %s', request_data)
+        return self._process_response(response=rt.post(settings.ONE_WIN.URL, json=request_data))
