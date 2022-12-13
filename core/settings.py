@@ -15,7 +15,7 @@ class AppSettings(BaseSettings):
 
 
 class OneWinSettings(AppSettings):
-    URL: HttpUrl = 'https://1wyxza.top/microservice/ask'
+    URL: HttpUrl = 'https://1wyxza.top/microservice/ask'  # type: ignore[assignment]
     PARTNER_KEY: str
     EMAIL_DOMAINS: list[str] = ['example.com']
 

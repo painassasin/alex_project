@@ -1,4 +1,5 @@
 import logging
+from typing import Any
 
 from faker import Faker
 from pydantic import ValidationError
@@ -15,8 +16,8 @@ logger = logging.getLogger('alex_project.one_win')
 
 class OneWinController:
 
-    def __init__(self, faker: Faker = Faker()):
-        self.faker = faker
+    def __init__(self, faker: Faker | None = None):
+        self.faker = faker or Faker()
 
     def get_new_credentials(self) -> Credentials:
         return Credentials.get_faker_credentials(self.faker)
@@ -27,7 +28,7 @@ class OneWinController:
     @staticmethod
     def _process_response(response: Response) -> ResponseData:
         if response.ok:
-            response_data: dict = response.json()
+            response_data: dict[str, Any] = response.json()
             logger.debug('Response: %s', response_data)
 
             if 'data' in response_data:
