@@ -8,12 +8,36 @@ authors = ["painassasin <painassasin@icloud.com>"]
 python = "^3.10"
 Faker = "^15.3.3"
 requests-tor = "^1.3"
-pydantic = {version = "^1.10.2", extras = ["dotenv"]}
+pydantic = { version = "^1.10.2", extras = ["dotenv"] }
 pyTelegramBotAPI = "^4.7.1"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.20.0"
+mypy = "^0.991"
+types-requests = "^2.28.11"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+py_version = 310
+profile = "pycharm"
+line_length = 120
+known_local_folder = ["core", "one_win"]
+multi_line_output = 2
+
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+check_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
